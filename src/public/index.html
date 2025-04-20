@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chatly - Connect Instantly</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    <div class="logo">Chatly</div>
+    <div class="user-section">
+      <a href="./login.html"><button class="cta" id="loginBtn">Login</button></a>
+      <div class="user-profile" id="userProfile" style="display: none;">
+        <i class="fas fa-user-circle user-icon"></i>
+        <div class="dropdown" id="userDropdown" style="display: none;">
+          <div class="user-info">
+            <p id="dropdownName"><strong>Name</strong></p>
+            <p id="dropdownEmail">Email</p>
+            <p id="dropdownUsername">@username</p>
+            <hr>
+          </div>
+          <a href="#" onclick="openAccountSettings()">⚙️ Account Settings</a>
+          <a href="#" onclick="logout()">🚪 Logout</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" id="hero">
+    <div class="hero-content" id="heroContent">
+      <h1>Chat Freely. Connect Instantly.</h1>
+      <p>Meet strangers. Talk to friends. All private. All real-time. No ads, no nonsense.</p>
+      <button class="join-btn" onclick="loadChat('global')">Join Global Chat</button>
+    </div>
+    <div class="chat-console" id="chatConsole" style="display: none;">
+      <div class="chat-header">
+        <span id="chatTitle">Chat</span>
+        <button class="close-btn" onclick="closeChat()">❌</button>
+      </div>
+      <div class="chat-messages" id="chatMessages"></div>
+      <div class="chat-input">
+        <input type="text" id="messageInput" placeholder="Type a message..." />
+        <button onclick="sendMessage()">Send</button>
+        <button class="chat-next" id="nextButton" style="display: none;" onclick="randomChatSkip()">Next</button>     
+      </div>
+    </div>
+    <div class="name-prompt" id="namePrompt" style="display: none;">
+      <h3>Enter Your Name for Global Chat</h3>
+      <input type="text" id="globalNameInput" placeholder="Your name" />
+      <button class="join-btn" onclick="enterGlobalChat()">Join</button>
+    </div>
+  </section>
+
+  <section class="chat-options" id="chatOptions">
+    <div class="chat-card">
+      <h3>🌍 Global Chat</h3>
+      <p>Jump into real-time global chat. No account needed.</p>
+      <button class="join-btn" onclick="loadChat('global')">Join</button>
+    </div>
+    <div class="chat-card">
+      <h3>🎲 Random Stranger Chat</h3>
+      <p>Match instantly with someone online. No profile, pure randomness.</p>
+      <button class="join-btn" id="join-random" onclick="loadChat('random')">Start</button>
+    </div>
+    <div class="chat-card">
+      <h3>👥 Chat with Friends</h3>
+      <p>Enter a friend's username and connect 1-on-1.</p>
+      <input type="text" placeholder="Enter username" class="friend-input" id="friendUsername">
+      <button class="join-btn" onclick="loadChat('friend')">Find Friend</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Chatly.</p>
+  </footer>
+
+  <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+  <!-- <script src="/socket.io/socket.io.js"></script> -->
+  <script src="script.js"></script>
+  <script src="globalChat.js"></script>
+  <script src="randomChat.js"></script>
+  <script src="privateChat.js"></script>
+
+</body>
+
+</html>
