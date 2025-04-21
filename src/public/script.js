@@ -88,10 +88,11 @@ function loadChat(type) {
 
   if (type === "global") {
     const existingToken = getCookie("anonToken");
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     if (existingToken) {
       chatConsole.style.display = "flex";
-      window.scrollTo({ top: 0, behavior: 'smooth' });
       initGlobalChat(); 
+      initializeChatConsole();
     } else {
       namePrompt.style.display = "block";
     }
@@ -105,6 +106,7 @@ function loadChat(type) {
     nextButton.style.display = "inline-block";
     window.scrollTo({ top: 0, behavior: 'smooth' });
     initRandomChat();
+    initializeChatConsole();
   } else if (type === "friend") {
     if (!isLoggedIn) {
       heroContent.style.display = "block";
@@ -119,12 +121,14 @@ function loadChat(type) {
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
     initPrivateChat(friendUsername);
+    initializeChatConsole();
   }
 }
 
 function enterGlobalChat() {
   if (isLoggedIn) {
     initGlobalChat();
+    initializeChatConsole();
   }
   window.scrollTo({ top: 0, behavior: 'smooth' });
   const nameInput = document.getElementById("globalNameInput").value.trim();
@@ -134,6 +138,7 @@ function enterGlobalChat() {
   }
   document.getElementById("namePrompt").style.display = "none";
   initGlobalChat(nameInput);
+  initializeChatConsole();
 }
 
 function sendMessage() {

@@ -96,7 +96,6 @@ nav a:hover {
 
 .chat-console {
   width: 100%;
-  height: 75vh;
   max-width: 1200px;
   background: #1a1a1a;
   border-radius: 20px;
@@ -104,18 +103,38 @@ nav a:hover {
   flex-direction: column;
   overflow: hidden;
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+  position: fixed; /* Fix to viewport */
+  top: 80px; /* Adjust based on header height */
+  bottom: 0; /* Stick to bottom */
+  left: 0;
+  right: 0;
+  margin: 0 auto; /* Center horizontally */
+  height: 75vh; /* Default height, will be adjusted dynamically */
+  transition: height 0.3s ease; /* Smooth height adjustment */
+  z-index: 999;
 }
 
 .chat-messages {
   flex: 1;
   padding: 20px;
-  overflow-y: auto;
+  overflow-y: auto; /* Scrollable message area */
   scroll-behavior: smooth;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  scrollbar-width: thin; 
-  scrollbar-color:  #0a84ffd0 #2c2c2c;
+  scrollbar-width: thin;
+  scrollbar-color: #0a84ffd0 #2c2c2c;
+  max-height: calc(100% - 120px); /* Reserve space for header and input */
+}
+
+.chat-input {
+  display: flex;
+  border-top: 1px solid #333;
+  padding: 12px;
+  gap: 10px;
+  background: #1a1a1a;
+  position: relative;
+  z-index: 10;
 }
 
 .message {
@@ -136,13 +155,6 @@ nav a:hover {
   align-self: flex-start;
   background: #2c2c2e;
   color: #fff;
-}
-
-.chat-input {
-  display: flex;
-  border-top: 1px solid #333;
-  padding: 12px;
-  gap: 10px;
 }
 
 .chat-input input {
@@ -335,11 +347,24 @@ footer {
     font-size: 0.9rem;
   }
 
-  .chat-console {
-    width: 100%;
-    height: 80vh;
-    border-radius: 14px;
-  }
+
+    .chat-console {
+      top: 80px; 
+      border-radius: 14px;
+      height: 80vh; 
+    }
+  
+    .chat-messages {
+      padding: 12px;
+      max-height: calc(100% - 100px);
+    }
+  
+    .chat-input {
+      flex-direction: column;
+    padding: 10px;
+    gap: 8px;
+    }
+  
 
   .chat-header {
     padding: 12px 16px;
@@ -349,21 +374,11 @@ footer {
     font-size: 1rem;
   }
 
-  .chat-messages {
-    padding: 12px;
-    gap: 8px;
-  }
 
   .message {
     font-size: 0.85rem;
     padding: 10px 14px;
     max-width: 85%;
-  }
-
-  .chat-input {
-    flex-direction: column;
-    padding: 10px;
-    gap: 8px;
   }
 
   .chat-input input {
