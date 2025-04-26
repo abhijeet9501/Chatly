@@ -1,10 +1,10 @@
 const checkFields = (arr) => {
     for (const element of arr) {
         if (!element || element == "") {
-            return null; // Return null if any field is missing or empty
+            return null; 
         }
     }
-    return true; // Return true if all fields are valid
+    return true; 
 };
 
 export { checkFields };
